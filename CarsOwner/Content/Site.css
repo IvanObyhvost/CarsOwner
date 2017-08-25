@@ -1,0 +1,125 @@
+﻿BODY
+{
+font-family: Cambria, Georgia, "Times New Roman";
+margin: 0;
+}
+div#wrapper {
+    width: 80%;
+    margin: auto;
+}
+DIV#header DIV.title, DIV.item H3, DIV.item H4, DIV.pager A
+{
+font: bold 1em "Arial Narrow", "Franklin Gothic Medium", Arial;
+}
+DIV#header
+{
+background-color: #636161;
+border-bottom: 2px solid #111;
+color: White;
+}
+DIV#header DIV.title
+{
+font-size: 2em;
+padding: .6em;
+}
+DIV#content
+{
+    border-left: 2px solid gray;
+    padding: 1em;
+    width: calc(100% - 15em);
+    float: right;
+    padding: 2px 15px;
+    margin: auto;
+}
+DIV#categories
+{
+float: left;
+width: 15em;
+padding: .3em;
+}
+
+#footer {
+    clear: both;
+}
+DIV.item
+{
+border-top: 1px dotted gray;
+padding-top: .7em;
+margin-bottom: .7em;
+}
+DIV.item:first-child
+{
+border-top: none;
+padding-top: 0;
+}
+DIV.item H3
+{
+    font-size: 1.3em;
+    margin: 0 0 .25em 0;
+}
+DIV.item H4
+{
+font-size: 1.1em;
+margin: .4em 0 0 0;
+}
+DIV.pager
+{
+text-align: right;
+border-top: 2px solid silver;
+padding: .5em 0 0 0;
+margin-top: 1em;
+}
+DIV.pager A
+{
+font-size: 1.1em;
+color: #666;
+text-decoration: none;
+padding: 0 .4em 0 .4em;
+}
+DIV.pager A:hover
+{
+background-color: Silver;
+}
+DIV.pager A.selected
+{
+background-color: #353535;
+color: White;
+}
+.form-control .widthLabel {
+    width: 200px;
+}
+.tdWidth {
+    width: 100px;
+}
+
+.chekedList span {
+    padding-right: 10px;
+}
+.chekedList span:first-child {
+    padding-left: 15px;
+}
+
+table+button {
+    margin-top: 10px;
+}
+
+.validation-summary-errors {
+    color: red;
+}
+
+tr.header {
+    font-weight: bold;
+}
+
+img.logo-img {
+    height: 70px;
+    width: auto;
+    padding-right: 50px;
+}
+.img-description{
+    height: 150px;
+    width: auto;
+}
+.title-content {
+    text-align: center;
+}

@@ -1,0 +1,19 @@
+﻿@using CarsOwner.Helper
+@using CarsOwner.Resource
+@model CarsOwner.Models.CarListViewModel
+
+@{
+    ViewBag.Title = "Главная";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div>
+    <h3>@ConstantNames.ListCars</h3>
+    <div class="row">
+        @Html.Partial("PartialViewCar", Model)
+    </div>
+
+
+</div>
+
+
+

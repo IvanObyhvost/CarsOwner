@@ -1,0 +1,61 @@
+﻿@using CarsOwner.Helper
+@using CarsOwner.Resource
+@model CarsOwner.Models.OwnerListViewModel
+
+@{
+    ViewBag.Title = "OwnersList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3>@ConstantNames.ListOwners</h3>
+
+<table class="table-striped">
+    <tr class="header">
+        <td class="tdWidth">
+            <p>@ConstantNames.NameOwner</p>
+        </td>
+        <td class="tdWidth">
+            <p>@ConstantNames.SurNameOwner</p>
+        </td>
+        <td style="width: 150px">
+            <p>@ConstantNames.BirthDate</p>
+        </td>
+        <td style="width: 150px">
+            <p>@ConstantNames.DrivingExperience</p>
+        </td>
+        <td style="width: 250px">
+            <p>@ConstantNames.ListCars</p>
+        </td>
+        <td></td>
+    </tr>
+    @foreach (var owner in Model.OwnersList)
+    {
+        <tr>
+            <td>
+                <p>@owner.Name</p></td>
+            <td>
+                <p>@owner.Surname</p></td>
+            <td>
+                <p>@owner.BirthDate</p></td>
+            <td>
+                <p>@owner.DrivingExperience</p></td>
+            <td>
+                <p>
+                    @foreach (var car in owner.CarList)
+                    {
+                        @Html.DisplayName(car.Model + " " + @car.СarMake)
+                        <br/>
+                    }
+                </p >
+            </td>       
+            <td>
+                @Html.ActionLink("Редактировать", "EditOwner", new {id = owner.IdOwner}) |
+                @Html.ActionLink("Удалить", "DeleteOwner", new {id = owner.IdOwner})
+            </td>
+        </tr>
+    }
+</table>
+
+<button class="btn btn-success" onclick="location.href = '@Url.Action("AddOwner")'">@ConstantNames.CreateOwner</button>
+
+

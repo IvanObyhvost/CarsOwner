@@ -1,0 +1,27 @@
+﻿@model CarsOwner.Models.CarListViewModel
+@using CarsOwner.Helper
+@using CarsOwner.Resource
+
+@foreach (var car in Model.CarsList)
+{
+    <div class="col-sm-6 col-md-4">
+    <div class="thumbnail">
+        <div class="img-description">
+            <img data-src="holder.js/300x200" alt="...">
+        </div>
+        <div class="caption">
+            <h3 class="title-content">
+                <a href="@Url.Action("CarView", "Car", new {id = car.IdCar})" class="btn-link">@car.Model @car.СarMake</a>
+            </h3>
+            <p>@ConstantNames.TypeCars - @Html.EnumDisplayName(@car.TypeCar)</p>
+            <p>@ConstantNames.YearRelease - @car.YearRelease</p>
+            <p>@ConstantNames.PriceCar - @car.Price</p>
+            <p>
+                <a href=@Url.Action("CarView", "Car", new { id = car.IdCar }) class="btn btn-primary" role="button">@ConstantNames.ReadMore</a> 
+                @*<a href="#" class="btn btn-default" role="button">Кнопка</a>*@
+            </p>
+        </div>
+    </div>
+    </div>
+}
+

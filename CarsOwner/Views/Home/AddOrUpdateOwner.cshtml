@@ -1,0 +1,78 @@
+﻿@using CarsOwner.Resource
+@model CarsOwner.Models.OwnerViewModel
+
+@{
+    ViewBag.Title = "AddOrUpdateOwner";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@(Model.Owner.IdOwner != 0 ? ConstantNames.Edit : ConstantNames.Add)</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary()
+        @if (Model.Owner.IdOwner != 0)
+        {
+           @Html.HiddenFor(model => model.Owner.IdOwner, false)
+        }
+        
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Owner.Name, htmlAttributes: new {@class = "control-label col-md-2"})
+            <div class="col-md-2">
+                @Html.EditorFor(model => model.Owner.Name, new {htmlAttributes = new {@class = "form-control"}})
+                @Html.ValidationMessageFor(model => model.Owner.Name, "", new {@class = "text-danger"})
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Owner.Surname, htmlAttributes: new {@class = "control-label col-md-2"})
+            <div class="col-md-2">
+                @Html.EditorFor(model => model.Owner.Surname, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Owner.Surname, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Owner.BirthDate, htmlAttributes: new {@class = "control-label col-md-2"})
+            <div class="col-md-2">
+                @Html.EditorFor(model => model.Owner.BirthDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Owner.BirthDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Owner.DrivingExperience, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-2">
+                @Html.EditorFor(model => model.Owner.DrivingExperience, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Owner.DrivingExperience, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label(ConstantNames.ListCars, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="chekedList col-md-2">
+                @foreach (var car in ViewBag.ListCar)
+                {
+                    <input type="checkbox" name="selectedCar" value="@car.IdCar"
+                           @(Model.Owner.CarList.FirstOrDefault(x => x.IdCar.Equals(car.IdCar)) != null ? "checked=\"checked\"" : "") />@car.Model <br />
+                }
+                @*@Html.DropDownList("CarsList")*@
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="@ConstantNames.Save" class="btn btn-default"/>
+                <input type="button" value="@ConstantNames.Back" class="btn btn-default" onclick="location.href='@Url.Action("ListOwner")'" />
+                
+            </div>
+        </div>
+    </div>
+}
+
+@*<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>*@
