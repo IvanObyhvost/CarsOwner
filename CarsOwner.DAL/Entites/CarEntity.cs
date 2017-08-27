@@ -23,5 +23,6 @@ namespace CarsOwner.DAL.Entites
         {
             OwnerEntities = new List<OwnerEntity>();
         }
+        public DescriptionCarEntity DescriptionCar { get; set; }
     }
 }

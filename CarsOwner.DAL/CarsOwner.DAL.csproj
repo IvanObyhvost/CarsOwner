@@ -52,6 +52,7 @@
     <Compile Include="Entites\CarEntity.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Entites\DescriptionCarEntity.cs" />
     <Compile Include="Entites\OwnerEntity.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -60,6 +61,10 @@
     <Compile Include="Migrations\201708241629357_ss.cs" />
     <Compile Include="Migrations\201708241629357_ss.Designer.cs">
       <DependentUpon>201708241629357_ss.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708272054423_AddTableDescriptionCar.cs" />
+    <Compile Include="Migrations\201708272054423_AddTableDescriptionCar.Designer.cs">
+      <DependentUpon>201708272054423_AddTableDescriptionCar.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -79,6 +84,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201708241629357_ss.resx">
       <DependentUpon>201708241629357_ss.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708272054423_AddTableDescriptionCar.resx">
+      <DependentUpon>201708272054423_AddTableDescriptionCar.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
