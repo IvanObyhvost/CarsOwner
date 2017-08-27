@@ -1,19 +1,20 @@
-﻿@model CarsOwner.Models.CarViewModel
+﻿@using CarsOwner.Resource
+@model CarsOwner.Models.CarViewModel
 
 @{
     ViewBag.Title = "CarView";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>View1</h2>
+<h2>@Model.Car.Model @Model.Car.СarMake</h2>
 
 <div>
-    <h4>CarViewModel</h4>
+    <h4></h4>
 	<hr />
     <dl class="dl-horizontal">
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    @Html.ActionLink("Back to List", "Index")
+    <a href=@Url.Action("Index", "Home") class="btn btn-primary" role="button">@ConstantNames.MainPage</a>
+    
 </p>
