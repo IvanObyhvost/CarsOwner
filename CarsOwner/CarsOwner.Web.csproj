@@ -238,6 +238,7 @@
     <Content Include="Views\Home\PartialViewCar.cshtml" />
     <Content Include="Views\Car\CarsList.cshtml" />
     <Content Include="Views\Car\CarView.cshtml" />
+    <Content Include="Views\Home\WhatNew.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="fonts\" />

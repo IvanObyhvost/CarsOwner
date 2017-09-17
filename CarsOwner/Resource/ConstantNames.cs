@@ -3,6 +3,7 @@
     public static class ConstantNames
     {
         public static string ListCars = "Список автомобилей";
+        public static string WhatNew = "Что нового?";
         public static string ModelCar = "Модель";
         public static string MarkaCar = "Марка";
         public static string TypeCars = "Тип автомобиля";
@@ -13,7 +14,7 @@
         public static string CreateOwner = "Добавить автовладельца";
         public static string CreateCar = "Добавить автомобиль";
         public static string ReadMore = "Подробнее";
-        public static int PageSizeThree = 3;
+        public static int PageSizeSix = 6;
         
 
         public const string NameOwner = "Имя";

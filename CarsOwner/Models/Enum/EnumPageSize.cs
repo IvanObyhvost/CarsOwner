@@ -4,9 +4,9 @@ namespace CarsOwner.Models.Enum
 {
     public enum EnumPageSize
     {
-        [Display(Name = "3")]
-        PageSizeThree,
         [Display(Name = "6")]
-        PageSizeSix
+        PageSizeSix,
+        [Display(Name = "12")]
+        PageSizeTwelve
     }
 }

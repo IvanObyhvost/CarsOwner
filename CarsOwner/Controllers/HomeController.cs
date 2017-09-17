@@ -17,14 +17,14 @@ namespace CarsOwner.Controllers
             _carService = carService;
             _ownerService = ownerService;
         }
-        public ActionResult Index(int page = 1, int pageSize = 3)
+        public ActionResult Index(int page = 1, int pageSize = 6)
         {
             var carModel = new CarListViewModel();
             var carsTotal = _carService.GetCarsDtoList().ToList();
             carModel.CarsList = carsTotal.Skip((page - 1) * pageSize).Take(pageSize).ToList();
             carModel.PageInfo = new PageInfo() { PageNumber = page, PageSize = pageSize, TotalItems = carsTotal.Count() };
-            carModel.PageSizeEnum = pageSize == ConstantNames.PageSizeThree ? 
-                EnumPageSize.PageSizeThree : EnumPageSize.PageSizeSix;
+            carModel.PageSizeEnum = pageSize == ConstantNames.PageSizeSix ? 
+                EnumPageSize.PageSizeSix : EnumPageSize.PageSizeTwelve;
             
             if (Request.IsAjaxRequest())
             {
@@ -92,6 +92,11 @@ namespace CarsOwner.Controllers
         public PartialViewResult PartialViewCar(CarListViewModel carListViewModel)
         {
             return PartialView(carListViewModel);
+        }
+
+        public ActionResult WhatNew()
+        {
+            return View();
         }
     }
 }
