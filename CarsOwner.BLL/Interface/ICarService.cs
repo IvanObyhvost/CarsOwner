@@ -8,6 +8,7 @@ namespace CarsOwner.BLL.Interface
         IEnumerable<CarDTO> GetCarsDtoList();
         CarDTO GetCarDto(int id);
         void AddOrUpdateCarDto(CarDTO carDto);
+        DescriptionCarDTO GetImage(int id);
         void DeteleCarDto(int id);
     }
 }

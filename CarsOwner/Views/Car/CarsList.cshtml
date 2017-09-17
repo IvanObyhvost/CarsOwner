@@ -1,0 +1,69 @@
+﻿@using CarsOwner.Helper
+@using CarsOwner.Resource
+@model CarsOwner.Models.CarListViewModel
+
+@{
+    ViewBag.Title = ConstantNames.ListCars;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div>
+    <h3>@ConstantNames.ListCars</h3>
+    <table class="table-striped">
+        <tr class="header">
+            <td class="tdWidth">
+                <p>@ConstantNames.ModelCar</p>
+            </td>
+            <td class="tdWidth">
+                <p>@ConstantNames.MarkaCar</p>
+            </td>
+            <td style="width: 150px">
+                <p>@ConstantNames.TypeCars</p>
+            </td>
+            <td class="tdWidth">
+                <p>@ConstantNames.PriceCar</p>
+            </td>
+            <td class="tdWidth">
+                <p>@ConstantNames.YearRelease</p>
+            </td>
+            <td style="width: 200px">
+                <p>@ConstantNames.ListOwners</p>
+            </td>
+            <td></td>
+        </tr>
+        @foreach (var car in Model.CarsList)
+        {
+            <tr>
+                <td>
+                    <p>@car.Model</p>
+                </td>
+                <td>
+                    <p>@car.СarMake</p>
+                </td>
+                <td>
+                    <p>@Html.EnumDisplayName(@car.TypeCar)</p>
+                </td>
+                <td>
+                    <p>@car.Price$</p>
+                </td>
+                <td>
+                    <p>@car.YearRelease</p>
+                </td>
+                <td>
+                    <p>
+                        @foreach (var owner in car.OwnerList)
+                        {
+                            @Html.DisplayName(owner.Name + " " + @owner.Surname)
+                            <br />
+                        }
+                    </p>
+                </td>
+                <td>
+                    @Html.ActionLink("Редактировать", "EditCar", new { id = car.IdCar }) |
+                    @Html.ActionLink("Удалить", "DeleteCar", new { id = car.IdCar })
+                </td>
+            </tr>
+        }
+    </table>
+    <button class="btn btn-success" onclick="location.href = '@Url.Action("AddCar")'">@ConstantNames.CreateCar</button>
+</div>
+

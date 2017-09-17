@@ -69,6 +69,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DTO\CarDTO.cs" />
+    <Compile Include="DTO\DescriptionCarDTO.cs" />
     <Compile Include="DTO\OwnerDTO.cs" />
     <Compile Include="Enum\TypeCar.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

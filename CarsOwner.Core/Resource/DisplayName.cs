@@ -18,5 +18,6 @@ namespace CarsOwner.Core.Resource
         public const string TypeCar = "Тип автомобиля";
         public const string Price = "Цена";
         public const string YearRelease = "Год выпуска";
+        public const string Description = "Описание";
     }
 }

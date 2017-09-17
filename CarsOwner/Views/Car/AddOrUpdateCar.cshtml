@@ -1,0 +1,94 @@
+﻿@using System.Web.UI.WebControls
+@using CarsOwner.Resource
+@model CarsOwner.Models.CarViewModel
+
+@{
+    ViewBag.Title = (Model.Car.IdCar != 0 ? ConstantNames.EditCarPage : ConstantNames.AddCarPage);
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@(Model.Car.IdCar != 0 ? ConstantNames.Edit : ConstantNames.Add)</h2>
+
+@using (Html.BeginForm("EditCar", "Car", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <hr/>
+        <div class="description-main-information">
+            @Html.ValidationSummary()
+            @if (Model.Car.IdCar != 0)
+            {
+                @Html.HiddenFor(model => model.Car.IdCar)
+            }
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Car.Model, htmlAttributes: new { @class = "control-label col-md-3" })
+                <div class="col-md-3">
+                    @Html.EditorFor(model => model.Car.Model, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+
+                @Html.LabelFor(model => model.Car.СarMake, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.EditorFor(model => model.Car.СarMake, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Car.TypeCar, htmlAttributes: new { @class = "control-label col-md-3" })
+                <div class="col-md-3">
+                    @Html.EnumDropDownListFor(model => model.Car.TypeCar, new { htmlAttributes = new { @class = "form-control" }, Style = "width: 100%; padding: 5px" })
+                </div>
+
+                @Html.LabelFor(model => model.Car.Price, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.EditorFor(model => model.Car.Price, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Car.YearRelease, htmlAttributes: new {@class = "control-label col-md-3"})
+                <div class="col-md-3">
+                    @Html.EditorFor(model => model.Car.YearRelease, new {htmlAttributes = new {@class = "form-control"}})
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Car.DescriptionCar.Description, htmlAttributes: new {@class = "control-label col-md-3"})
+                <div class="col-md-8 text-description">
+                    @Html.TextAreaFor(model => model.Car.DescriptionCar.Description, new {htmlAttributes = new {@class = "form-control"}})
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Фото", htmlAttributes: new { @class = "control-label col-md-3" })
+                <div class="col-md-8 control-label">
+                    <input type="file" name="Image" />
+                </div>
+            </div>
+        </div>
+
+        <div class="description-list-owners">
+            @if (Model.Car.IdCar != 0)
+            {
+                <div class="form-group ">
+                    <span class="control-label">@Html.Label(ConstantNames.ListOwners)</span>
+                    <div>
+                        @foreach (var owner in Model.Car.OwnerList)
+                        {
+                            @Html.DisplayName(owner.Name + " " + owner.Surname)
+                            <br />
+                        }
+                    </div>
+                </div>
+            }
+        </div>
+        
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="@ConstantNames.Save" class="btn btn-default"/>
+                <input type="button" value="@ConstantNames.Back" class="btn btn-default" onclick="location.href=window.history.back()" />
+            </div>
+        </div>
+    </div>
+}

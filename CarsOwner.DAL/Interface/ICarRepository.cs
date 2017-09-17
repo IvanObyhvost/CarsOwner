@@ -9,6 +9,7 @@ namespace CarsOwner.DAL.Interface
         CarDTO GetCar(int id);
         void AddOrUpdateCar(CarDTO car);
         void DeteleCar(int id);
+        DescriptionCarDTO GetImage(int id);
         void Save(); 
     }
 }

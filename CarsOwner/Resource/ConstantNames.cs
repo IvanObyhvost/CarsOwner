@@ -13,6 +13,8 @@
         public static string CreateOwner = "Добавить автовладельца";
         public static string CreateCar = "Добавить автомобиль";
         public static string ReadMore = "Подробнее";
+        public static int PageSizeThree = 3;
+        
 
         public const string NameOwner = "Имя";
         public const string SurNameOwner = "Фамилия";
@@ -35,5 +37,8 @@
         public const string RequiredYearRelease = "Введите год выпуска";
 
         public const string MainPage = "Главная";
+        public const string AddCarPage = "Добавить автомобиль";
+        public const string EditCarPage = "Редактировать машину";
+        public const string CreateOwnerPage = "Добавить автовладельца";
     }
 }

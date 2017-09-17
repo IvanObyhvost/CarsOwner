@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Data.Entity.Migrations;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using CarsOwner.Core.DTO;
 using CarsOwner.Core.Enum;
@@ -24,25 +24,26 @@ namespace CarsOwner.DAL.Repository
         {
             var carEntity = _carOwnerContext.Cars;
             var carsList = new List<CarDTO>();
-            //if (carsList.Count != 0)
-            //{
-                foreach (var car in carEntity)
+            foreach (var car in carEntity)
+            {
+                carsList.Add(new CarDTO()
                 {
-                    carsList.Add(new CarDTO()
-                    {
-                        IdCar = car.IdCar,
-                        Model = car.Model,
-                        Price = car.Price,
-                        YearRelease = car.YearRelease,
-                        TypeCar = (TypeCar)car.TypeCar,
-                        СarMake = car.СarMake
-                    });
-                }
+                    IdCar = car.IdCar,
+                    Model = car.Model,
+                    Price = car.Price,
+                    YearRelease = car.YearRelease,
+                    TypeCar = (TypeCar)car.TypeCar,
+                    СarMake = car.СarMake
+                });
+            }
             
 
-                foreach (var car in carsList)
+            foreach (var car in carsList)
+            {
+                var owers = carEntity.Find(car.IdCar).OwnerEntities;
+                if(owers != null)
                 {
-                    foreach (var owner in carEntity.Find(car.IdCar).OwnerEntities)
+                    foreach (var owner in owers)
                     {
                         car.OwnerList.Add(new OwnerDTO()
                         {
@@ -50,14 +51,14 @@ namespace CarsOwner.DAL.Repository
                             Surname = owner.Surname
                         });
                     }
-                
                 }
-                return carsList;
-            //}
-            //else
-            //{
-            //    return null;
-            //}
+
+                var description = carEntity.Find(car.IdCar).DescriptionCar;
+                car.DescriptionCar.Description = description.Description;
+                car.DescriptionCar.ImageData = description.ImageData;
+
+            }
+            return carsList;
         }
 
         public CarDTO GetCar(int id)
@@ -80,23 +81,48 @@ namespace CarsOwner.DAL.Repository
                     Name = owner.Name,
                     Surname = owner.Surname
                 });
+                
+                
             }
-
+            carDto.DescriptionCar.ImageData = carEntity.DescriptionCar.ImageData;
+            //carDto.DescriptionCar.ImageMineType = carEntity.DescriptionCar.ImageMineType;
+            carDto.DescriptionCar.Description = carEntity.DescriptionCar.Description;
             return carDto;
         }
 
         public void AddOrUpdateCar(CarDTO car)
         {
-            var carEntity = new CarEntity()
+            var carEntity = new CarEntity();
+
+            if (car.IdCar != 0)
             {
-                IdCar = car.IdCar,
-                Model = car.Model,
-                Price = car.Price,
-                YearRelease = car.YearRelease,
-                TypeCar = (byte)car.TypeCar,
-                СarMake = car.СarMake
-            };
-            _carOwnerContext.Cars.AddOrUpdate(carEntity);
+                carEntity = _carOwnerContext.Cars.Find(car.IdCar);
+                carEntity.DescriptionCar.Description = car.DescriptionCar.Description;
+            }
+            else
+            {  
+                carEntity.DescriptionCar = new DescriptionCarEntity()
+                {
+                    Description = car.DescriptionCar.Description,
+                    ImageData = car.DescriptionCar.ImageData,
+                    ImageMineType = car.DescriptionCar.ImageMineType
+                }; 
+            }
+
+            if (car.DescriptionCar.ImageData != null)
+            {
+                carEntity.DescriptionCar.ImageData = car.DescriptionCar.ImageData;
+                carEntity.DescriptionCar.ImageMineType = car.DescriptionCar.ImageMineType;
+            }
+
+            carEntity.IdCar = car.IdCar;
+            carEntity.Model = car.Model;
+            carEntity.Price = car.Price;
+            carEntity.YearRelease = car.YearRelease;
+            carEntity.TypeCar = (byte)car.TypeCar;
+            carEntity.СarMake = car.СarMake;
+            
+           _carOwnerContext.Cars.AddOrUpdate(carEntity);
         }
 
         public void DeteleCar(int id)
@@ -105,6 +131,17 @@ namespace CarsOwner.DAL.Repository
             _carOwnerContext.Cars.Remove(carEntity);
         }
 
+        public DescriptionCarDTO GetImage(int id)
+        {
+            var descriptionDto = new DescriptionCarDTO();
+            var descriptionEntity = _carOwnerContext.DescriptionCars.Find(id);
+            if (descriptionEntity != null)
+            {
+                descriptionDto.ImageData = descriptionEntity.ImageData;
+                descriptionDto.ImageMineType = descriptionEntity.ImageMineType;
+            }
+            return descriptionDto;
+        }
         public void Save()
         {
             _carOwnerContext.SaveChanges();

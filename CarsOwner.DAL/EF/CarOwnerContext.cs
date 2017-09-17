@@ -8,7 +8,7 @@ namespace CarsOwner.DAL.EF
         public CarOwnerContext() : base("DbConnection") { }
         public DbSet<CarEntity> Cars { get; set; }
         public DbSet<OwnerEntity> Owners { get; set; }
-        public DbSet<DescriptionCarEntity> DescriptionCar { get; set; }
+        public DbSet<DescriptionCarEntity> DescriptionCars { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<OwnerEntity>()
@@ -19,9 +19,9 @@ namespace CarsOwner.DAL.EF
                 .ToTable("CarsOwners"));
 
             modelBuilder.Entity<DescriptionCarEntity>()
-                .HasOptional(c => c.Car)
-                .WithRequired(s => s.DescriptionCar);
-
+                .HasRequired(h => h.Car)
+                .WithRequiredDependent(w => w.DescriptionCar)
+                .WillCascadeOnDelete(true);
         }
     }
 }

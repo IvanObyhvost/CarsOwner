@@ -1,20 +1,83 @@
-﻿@using CarsOwner.Resource
+﻿@using System.Web.UI.WebControls
+@using CarsOwner.Helper
+@using CarsOwner.Resource
 @model CarsOwner.Models.CarViewModel
 
 @{
-    ViewBag.Title = "CarView";
+    ViewBag.Title = Model.Car.Model + " " + Model.Car.СarMake;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>@Model.Car.Model @Model.Car.СarMake</h2>
+<h2>@Model.Car.Model @Model.Car.СarMake @Html.ActionLink("[Редактировать]", "EditCar", new { id = Model.Car.IdCar })</h2> 
 
 <div>
     <h4></h4>
-	<hr />
-    <dl class="dl-horizontal">
-    </dl>
-</div>
-<p>
-    <a href=@Url.Action("Index", "Home") class="btn btn-primary" role="button">@ConstantNames.MainPage</a>
-    
-</p>
+    <hr/>
+    <dl class="dl-horizontal"></dl>
+    <div class="description-main-information">
+        <div class="form-group">
+            @Html.LabelFor(model => model.Car.Model, htmlAttributes: new {@class = "control-label col-md-3"})
+            <div class="col-md-3">
+                @Html.DisplayTextFor(model => model.Car.Model)
+            </div>
+            @Html.LabelFor(model => model.Car.СarMake, htmlAttributes: new {@class = "control-label col-md-3"})
+            <div class="col-md-3">
+                @Html.DisplayTextFor(model => model.Car.СarMake)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <br/>
+            @Html.LabelFor(model => model.Car.Price, htmlAttributes: new {@class = "control-label col-md-3"})
+            <div class="col-md-3">
+                @Html.DisplayTextFor(model => model.Car.Price)$
+            </div>
+            @Html.LabelFor(model => model.Car.YearRelease, htmlAttributes: new {@class = "control-label col-md-3"})
+            <div class="col-md-3">
+                @Html.DisplayTextFor(model => model.Car.YearRelease)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <br/>
+            @Html.LabelFor(model => model.Car.TypeCar, htmlAttributes: new {@class = "control-label col-md-3"})
+            <div class="col-md-3">
+                @Html.EnumDisplayName(Model.Car.TypeCar)
+            </div>
+
+        </div>
+        <div class="form-group">
+            <br/>
+            <div class="col-md-3">
+                @Html.DisplayTextFor(model => model.Car.DescriptionCar.Description)
+            </div>
+        </div>
+
+       
+    </div>
+    <div class="description-list-owners">
+        <div class="box-view-img">
+            @if (Model.Car.DescriptionCar.ImageData != null)
+            {
+                <img class="img-view" src="@Url.Action("GetImage", "Car", new {id = Model.Car.IdCar})" />
+            }
+            else
+            {
+                <img height="200" width="200" src="" />
+            }
+        </div>
+        
+    </div>
+
+    <div class="descripion-foot form-group">
+        
+    </div>
+
+    <div class="col-md-offset-2">
+        <br/>
+        <p>
+            <input type="button" value="@ConstantNames.Back" class="btn btn-primary" onclick="location.href=window.history.back()" />
+
+        </p>
+    </div>
+    </div>

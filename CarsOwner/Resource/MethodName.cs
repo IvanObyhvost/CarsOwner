@@ -9,8 +9,12 @@ namespace CarsOwner.Resource
     {
         public static string Index = "Index";
         public static string AddOrUpdateOwner = "AddOrUpdateOwner";
-        public static string ListOwner = "ListOwner";
+        public static string OwnersList = "OwnersList";
         public static string AddOrUpdateCar = "AddOrUpdateCar";
         public static string CarView = "CarView";
+        public static string CarsList = "CarsList";
+        public static string PartialViewCar = "PartialViewCar";
+        
+        
     }
 }

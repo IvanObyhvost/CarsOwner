@@ -24,11 +24,14 @@ namespace CarsOwner.Core.DTO
         public decimal Price { get; set; }
         [Display(Name = DisplayName.YearRelease)]
         public int YearRelease { get; set; }
+        public DescriptionCarDTO DescriptionCar { get; set; }
         public List<OwnerDTO> OwnerList { get; set; }
 
         public CarDTO()
         {
             OwnerList = new List<OwnerDTO>();
+            DescriptionCar = new DescriptionCarDTO();
         }
+        
     }
 }

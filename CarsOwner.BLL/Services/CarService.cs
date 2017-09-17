@@ -33,6 +33,10 @@ namespace CarsOwner.BLL.Services
             _carRepository.Save();
         }
 
+        public DescriptionCarDTO GetImage(int id)
+        {
+            return _carRepository.GetImage(id);
+        }
         public void DeteleCarDto(int id)
         {
             _carRepository.DeteleCar(id);

@@ -9,7 +9,7 @@ div#wrapper {
 }
 DIV#header DIV.title, DIV.item H3, DIV.item H4, DIV.pager A
 {
-font: bold 1em "Arial Narrow", "Franklin Gothic Medium", Arial;
+    font: bold 1em "Arial Narrow", "Franklin Gothic Medium", Arial;
 }
 DIV#header
 {
@@ -117,9 +117,63 @@ img.logo-img {
     padding-right: 50px;
 }
 .img-description{
-    height: 150px;
+    height: 200px;
+    max-width: 100%;
+    text-align: center;
+}
+
+.img-description>img{
+    height: 100%;
     width: auto;
+    max-width: 100%;
+}
+.box-view-img {
+    height: 200px;
+    width: 200px;
+}
+.img-view{
+    height: auto;
+    max-width: 100%;
 }
 .title-content {
     text-align: center;
+}
+.description-main-information {
+    width: 70%;
+    float: left;
+}
+.description-list-owners {
+    width: 30%;
+    float: right;
+}
+.descripion-foot {
+    clear: both;
+}
+.text-description>textarea {
+    width: 100%;
+    padding: 6px 12px;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+}
+.box-view-car {
+    margin-bottom: 10px;
+}
+h2>a {
+    color: #428bca;
+    text-decoration: none; 
+    font-size: 0.6em;  
+}
+.count-item-box {
+    text-align: left;
+    padding: 10px 0px;
+}
+.index-header>h3{
+    display: inline;
+}
+.index-header>span {
+    float: right;
+}
+.index-header {
+    margin-top: 10px;
+    margin-bottom: 10px;
 }

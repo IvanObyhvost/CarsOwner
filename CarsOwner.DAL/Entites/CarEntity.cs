@@ -16,13 +16,13 @@ namespace CarsOwner.DAL.Entites
         public byte TypeCar { get; set; }
         public decimal Price { get; set; }
         public int YearRelease { get; set; }
-
         public virtual ICollection<OwnerEntity> OwnerEntities { get; set; }
-
+        public virtual DescriptionCarEntity DescriptionCar { get; set; }
         public CarEntity()
         {
             OwnerEntities = new List<OwnerEntity>();
+            //DescriptionCar = new DescriptionCarEntity();
         }
-        public DescriptionCarEntity DescriptionCar { get; set; }
+        
     }
 }
