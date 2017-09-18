@@ -11,48 +11,19 @@
         <h3>@ConstantNames.ListCars</h3>
         <span>
             @Html.HiddenFor(x => x.PageInfo.PageNumber)
-            @*@Html.HiddenFor(x => x.PageInfo.PageSize)*@
             Количество елементов на страницу
-            @*<select name="page" id="CountItems">
-                <option value="3">3</option>
-                <option value="6">6</option>
-            </select>*@
             @Html.EnumDropDownListFor(x => x.PageSizeEnum)
-            @*@Html.DropDownListFor(o => o.PageInfo.PageSize,
-                     Enum.GetValues(typeof(EnumPageSize))
-                     .Cast<EnumPageSize>()
-                     .Select(x => new SelectListItem { Text = ((int)x).ToString(), Value = ((int)x).ToString() }))*@
         </span>
     </div>
-
+    <hr/>
     <div class="home-index-ListModel">
         @Html.Partial(MethodName.PartialViewCar, Model)
     </div>
-    
+
 
 
 </div>
 <script src="~/Scripts/Home/jq-selectCount.js"></script>
-<script>
-    function navigationFun(e) {
-        
-        var pageSize = $('select[name="page"]').val();
-        var pageNumber = e;
-        $.post("/Home/Index", { page: pageNumber, pageSize: pageSize },
-            function(data, status){
-                alert("Data: " + data + "\nStatus: " + status);
-            });
-        };
-        //$.ajax({
-        //    method: "POST",
-        //    url: "/Home/Index",
-        //    data: { page: pageNumber, pageSize: pageSize }
-        //}).success(function (html) {
-        //    $(".home-index-ListModel").empty().append(html);
-        //    $('#PageInfo_PageSize').val(pageSize);
-        //});
-    //}
-</script>
 
 
 

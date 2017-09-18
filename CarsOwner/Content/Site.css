@@ -175,5 +175,13 @@ h2>a {
 }
 .index-header {
     margin-top: 10px;
-    margin-bottom: 10px;
+}
+.div-left {
+    width: 50%;
+    text-align: center;
+}
+.div-right {
+    text-align: center;
+    width: 50%;
+    border-left: 1px solid black;
 }
